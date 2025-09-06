@@ -1,0 +1,115 @@
+/* Apple SF Pro font */
+@import url("https://fonts.cdnfonts.com/css/sf-pro-display");
+
+body {
+  font-family: "SF Pro Display", -apple-system, BlinkMacSystemFont, "Segoe UI",
+    Roboto, Helvetica, Arial, sans-serif;
+  background: linear-gradient(135deg, #101214 0%, #15181a 100%);
+  min-height: 100vh;
+  color: #e0e0e0;
+  /* This body style allows for a normal, scrollable page */
+  padding: 2rem;
+}
+
+/* Animated background gradient */
+body::before {
+  content: "";
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background: radial-gradient(
+      circle at 20% 20%,
+      rgba(135, 206, 235, 0.1),
+      transparent 40%
+    ),
+    radial-gradient(
+      circle at 80% 30%,
+      rgba(255, 105, 180, 0.1),
+      transparent 40%
+    ),
+    radial-gradient(
+      circle at 50% 80%,
+      rgba(144, 238, 144, 0.1),
+      transparent 40%
+    );
+  background-size: 300% 300%;
+  z-index: -1;
+  animation: backgroundPan 30s infinite alternate ease-in-out;
+}
+@keyframes backgroundPan {
+  0% {
+    background-position: 0% 50%;
+  }
+  50% {
+    background-position: 100% 50%;
+  }
+  100% {
+    background-position: 0% 50%;
+  }
+}
+
+/* Glass Form Container */
+.glass-form {
+  background: rgba(30, 30, 35, 0.6);
+  backdrop-filter: blur(20px);
+  -webkit-backdrop-filter: blur(20px);
+  border-radius: 2rem;
+  border: 1px solid rgba(255, 255, 255, 0.1);
+  box-shadow: 0 8px 30px rgba(0, 0, 0, 0.3);
+  /* Removed height and overflow properties to allow natural form size */
+}
+
+/* Other styles for consistency */
+.form-input {
+  transition: all 0.3s ease;
+}
+.form-input:focus {
+  box-shadow: 0 0 15px rgba(255, 204, 0, 0.2);
+  border-color: rgba(255, 204, 0, 0.5);
+}
+.btn {
+  transition: all 0.3s cubic-bezier(0.25, 0.46, 0.45, 0.94);
+}
+.btn:hover {
+  transform: scale(1.05);
+}
+.btn:active {
+  transform: scale(0.95);
+}
+@keyframes fadeInUp {
+  from {
+    opacity: 0;
+    transform: translateY(20px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+.animate-fadeInUp {
+  opacity: 0;
+  animation: fadeInUp 0.7s cubic-bezier(0.215, 0.61, 0.355, 1) forwards;
+}
+.delay-1 {
+  animation-delay: 0.1s;
+}
+.delay-2 {
+  animation-delay: 0.2s;
+}
+.delay-3 {
+  animation-delay: 0.3s;
+}
+.delay-4 {
+  animation-delay: 0.4s;
+}
+.delay-5 {
+  animation-delay: 0.5s;
+}
+.delay-6 {
+  animation-delay: 0.6s;
+}
+.delay-7 {
+  animation-delay: 0.7s;
+}
