@@ -5,46 +5,29 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>Sign Up | Aurora Theme</title>
   <script src="https://cdn.tailwindcss.com"></script>
-  <link rel="stylesheet" href="assets/css/auth.css"> </head>
   <link rel="stylesheet" href="assets/css/main.css">
+  <script src="assets/js/theme.js"></script>
+</head>
+<body class="flex items-center justify-center p-4">
 
-<body>
-
-  <a href="index.html" class="absolute top-8 right-8 glass-form px-5 py-2 rounded-full text-sm text-white hover:scale-105 transition animate-fadeInUp">Home</a>
+  <a href="index.html" class="glass-form absolute top-8 right-8 px-5 py-2 rounded-full text-sm hover:scale-105 transition animate-fadeInUp">Home</a>
 
   <main class="flex items-center justify-center">
     <div id="formContainer" class="glass-form p-10 w-full max-w-sm text-center">
-      <h2 class="text-3xl font-bold mb-6 text-white animate-fadeInUp delay-1">Sign Up</h2>
+      <h2 class="text-3xl font-bold mb-6 animate-fadeInUp delay-1">Sign Up</h2>
       <form id="signupForm">
-        <input type="text" id="signupName" placeholder="Name" required
-               class="w-full mb-4 p-3 rounded-xl bg-transparent border border-gray-700 text-gray-200 placeholder-gray-500 focus:outline-none focus:ring-2 focus:ring-yellow-400 form-input animate-fadeInUp delay-2">
-        <input type="email" id="signupEmail" placeholder="Email" required
-               class="w-full mb-4 p-3 rounded-xl bg-transparent border border-gray-700 text-gray-200 placeholder-gray-500 focus:outline-none focus:ring-2 focus:ring-yellow-400 form-input animate-fadeInUp delay-3">
-        <input type="password" id="signupPassword" placeholder="Password" required
-               class="w-full mb-6 p-3 rounded-xl bg-transparent border border-gray-700 text-gray-200 placeholder-gray-500 focus:outline-none focus:ring-2 focus:ring-yellow-400 form-input animate-fadeInUp delay-4">
-        <button type="submit" class="w-full bg-yellow-400 text-gray-900 py-3 rounded-full text-lg font-medium btn animate-fadeInUp delay-5">Register</button>
+        <input type="text" id="signupName" placeholder="Name" required class="w-full mb-4 p-3 rounded-xl focus:outline-none form-input animate-fadeInUp delay-2">
+        <input type="email" id="signupEmail" placeholder="Email" required class="w-full mb-4 p-3 rounded-xl focus:outline-none form-input animate-fadeInUp delay-3">
+        <input type="password" id="signupPassword" placeholder="Password" required class="w-full mb-6 p-3 rounded-xl focus:outline-none form-input animate-fadeInUp delay-4">
+        <button type="submit" class="w-full py-3 rounded-full text-lg font-medium btn btn-accent animate-fadeInUp delay-5">Register</button>
       </form>
-      <p class="text-sm text-gray-400 mt-4 animate-fadeInUp delay-5">Already have an account? <a href="login.html" class="text-yellow-400 hover:text-white transition">Login</a></p>
+      <p class="text-sm text-secondary mt-4 animate-fadeInUp delay-5">Already have an account? <a href="login.html">Login</a></p>
     </div>
   </main>
   
   <script src="assets/js/script.js"></script>
-  <script>
-    // 3D Tilt Effect for the form
-    const formContainer = document.getElementById('formContainer');
-    formContainer.addEventListener('mousemove', (e) => {
-        const rect = formContainer.getBoundingClientRect();
-        const x = e.clientX - rect.left - rect.width / 2;
-        const y = e.clientY - rect.top - rect.height / 2;
-        const rotateX = (y / rect.height) * -10; // Rotation intensity
-        const rotateY = (x / rect.width) * 10;
-        formContainer.style.transform = `rotateX(${rotateX}deg) rotateY(${rotateY}deg)`;
-        formContainer.style.boxShadow = `${rotateY * 0.8}px ${-rotateX * 0.8}px 40px rgba(0,0,0,0.4)`;
-    });
-    formContainer.addEventListener('mouseleave', () => {
-        formContainer.style.transform = 'rotateX(0) rotateY(0)';
-        formContainer.style.boxShadow = '0 8px 30px rgba(0,0,0,0.3)';
-    });
-  </script>
+  <!-- Add this script to enable the 3D tilt effect -->
+  <script src="assets/js/effects.js"></script>
 </body>
 </html>
+
