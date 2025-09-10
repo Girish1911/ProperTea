@@ -3,63 +3,84 @@
 
 /* --- THEME COLOR DEFINITIONS --- */
 :root {
-  /* Dark Mode (Default) */
+  /* Light Mode (Default) - ENHANCED CONTRAST */
+  --bg-gradient: linear-gradient(135deg, #f9fafb 0%, #e5e7eb 100%);
+  --bg-animated-gradient: radial-gradient(
+      ellipse at 0% 0%,
+      hsla(200, 80%, 70%, 0.15) 0%,
+      transparent 50%
+    ),
+    radial-gradient(
+      ellipse at 100% 0%,
+      hsla(320, 80%, 70%, 0.15) 0%,
+      transparent 50%
+    ),
+    radial-gradient(
+      ellipse at 100% 100%,
+      hsla(40, 80%, 70%, 0.15) 0%,
+      transparent 50%
+    ),
+    radial-gradient(
+      ellipse at 0% 100%,
+      hsla(140, 80%, 70%, 0.15) 0%,
+      transparent 50%
+    );
+  --text-primary: #111827;
+  --text-secondary: #374151;
+  --text-accent: #c2410c;
+  --btn-accent-bg: #1f2937;
+  --btn-accent-text: #f9fafb;
+  --glass-bg: rgba(255, 255, 255, 0.75);
+  --glass-border: rgba(0, 0, 0, 0.08);
+  --shadow-color: rgba(0, 0, 0, 0.1);
+  --hover-shadow-color: rgba(0, 0, 0, 0.2);
+  --link-hover-color: #000000;
+  --theme-toggle-icon-color: #4b5563;
+  --glare-color: rgba(0, 0, 0, 0.05);
+  --input-bg: #ffffff;
+  --input-border: #d1d5db;
+  --input-text: #111827;
+  --placeholder-text: #6b7280;
+}
+
+html.dark {
+  /* Dark Mode */
   --bg-gradient: linear-gradient(135deg, #101214 0%, #15181a 100%);
   --bg-animated-gradient: radial-gradient(
-      circle at 20% 20%,
-      rgba(135, 206, 235, 0.1),
+      600px circle at 10% 20%,
+      hsl(240, 60%, 50%, 0.2),
       transparent 40%
     ),
     radial-gradient(
-      circle at 80% 30%,
-      rgba(255, 105, 180, 0.1),
+      400px circle at 90% 80%,
+      hsl(280, 60%, 50%, 0.2),
       transparent 40%
     ),
-    radial-gradient(
-      circle at 50% 80%,
-      rgba(144, 238, 144, 0.1),
-      transparent 40%
-    );
-  --text-primary: #e0e0e0;
-  --text-secondary: #a0a0a0;
-  --text-accent: #facc15; /* yellow-400 */
+    radial-gradient(1px circle at 20% 80%, #ffffff, transparent),
+    radial-gradient(2px circle at 80% 20%, #ffffff, transparent),
+    radial-gradient(1px circle at 50% 50%, #ffffff, transparent);
+  --text-primary: #e5e7eb;
+  --text-secondary: #9ca3af;
+  --text-accent: #facc15;
   --btn-accent-bg: #facc15;
   --btn-accent-text: #1f2937;
   --glass-bg: rgba(30, 30, 35, 0.7);
   --glass-border: rgba(255, 255, 255, 0.1);
+  --shadow-color: rgba(0, 0, 0, 0.4);
+  --hover-shadow-color: rgba(0, 0, 0, 0.6);
+  --link-hover-color: #ffffff;
+  --theme-toggle-icon-color: #9ca3af;
+  --glare-color: rgba(255, 255, 255, 0.15);
   --input-bg: transparent;
-  --input-border: #4b5563; /* gray-600 */
+  --input-border: #4b5563;
+  --input-text: #e5e7eb;
+  --placeholder-text: #9ca3af;
 }
 
-html.light-mode {
-  /* Light Mode */
-  --bg-gradient: linear-gradient(135deg, #f9fafb 0%, #f3f4f6 100%);
-  --bg-animated-gradient: radial-gradient(
-      circle at 20% 20%,
-      rgba(59, 130, 246, 0.05),
-      transparent 40%
-    ),
-    radial-gradient(
-      circle at 80% 30%,
-      rgba(236, 72, 153, 0.05),
-      transparent 40%
-    ),
-    radial-gradient(circle at 50% 80%, rgba(34, 197, 94, 0.05), transparent 40%);
-  --text-primary: #1f2937;
-  --text-secondary: #4b5563;
-  --text-accent: #f59e0b; /* amber-500 */
-  --btn-accent-bg: #1f2937;
-  --btn-accent-text: #f9fafb;
-  --glass-bg: rgba(255, 255, 255, 0.7);
-  --glass-border: rgba(0, 0, 0, 0.1);
-  --input-bg: #f9fafb;
-  --input-border: #d1d5db; /* gray-300 */
-}
-/* ----------------------------- */
-
-/* --- General Body and Layout Styles --- */
+/* --- General Body and Layout --- */
 html {
   scroll-behavior: smooth;
+  overflow-x: hidden; /* THE FIX: Prevents horizontal scroll caused by large bg */
 }
 body {
   font-family: "SF Pro Display", -apple-system, BlinkMacSystemFont, "Segoe UI",
@@ -67,44 +88,33 @@ body {
   background: var(--bg-gradient);
   color: var(--text-primary);
   min-height: 100vh;
-  transition: background-color 0.5s, color 0.5s;
+  transition: background 0.4s ease, color 0.4s ease;
+  perspective: 1500px;
+  overflow-x: hidden; /* THE FIX: Ensures body does not extend horizontally */
 }
-body.auth-page,
-body.listing-page {
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  padding: 1rem;
-  overflow: hidden;
-}
-body.scrollable-page {
-  padding: 2rem;
-}
+/* THE FIX: Updated background animation */
 body::before {
   content: "";
   position: fixed;
   top: 0;
   left: 0;
-  right: 0;
-  bottom: 0;
+  width: 100%;
+  height: 100%;
   background: var(--bg-animated-gradient);
   background-size: 300% 300%;
   z-index: -1;
-  animation: backgroundPan 30s infinite alternate ease-in-out;
+  animation: backgroundPan 45s ease-in-out infinite alternate;
 }
 @keyframes backgroundPan {
-  0% {
-    background-position: 0% 50%;
+  from {
+    background-position: 0% 0%;
   }
-  50% {
-    background-position: 100% 50%;
-  }
-  100% {
-    background-position: 0% 50%;
+  to {
+    background-position: 100% 100%;
   }
 }
 
-/* --- Glassmorphism Components --- */
+/* --- Base Glass Component Styles --- */
 .glass-nav,
 .glass-search,
 .glass-card,
@@ -112,67 +122,156 @@ body::before {
 .contact-card {
   background: var(--glass-bg);
   backdrop-filter: blur(20px);
-  -webkit-backdrop-filter: blur(20px);
   border: 1px solid var(--glass-border);
-  box-shadow: 0 8px 30px rgba(0, 0, 0, 0.3);
+  box-shadow: 0 8px 30px var(--shadow-color);
   border-radius: 2rem;
-  transition: background-color 0.5s, border-color 0.5s;
+  transition: box-shadow 0.3s ease, transform 0.3s ease; /* Added transform transition */
 }
-.glass-nav {
-  border-radius: 9999px;
+.glass-nav:hover,
+.glass-search:hover,
+.glass-form:hover,
+.contact-card:hover {
+  box-shadow: 0 16px 50px var(--hover-shadow-color);
+  transform: scale(1.01) translateY(-2px);
 }
+.glass-nav,
 .glass-search {
   border-radius: 9999px;
 }
 
-/* --- Input Fields --- */
-.form-input {
-  background: var(--input-bg);
-  border: 1px solid var(--input-border);
-  color: var(--text-primary);
+/* --- 3D TILT EFFECT FOR PROPERTY CARDS ONLY --- */
+.glass-card {
+  will-change: transform;
+  transform-style: preserve-3d;
+  position: relative;
+  overflow: hidden;
+  transform: scale(1) rotateX(var(--rotateX)) rotateY(var(--rotateY));
+}
+.glass-card:hover {
+  transform: scale(1.02) rotateX(var(--rotateX)) rotateY(var(--rotateY));
+}
+.glass-card::before {
+  content: "";
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background: radial-gradient(
+    circle at var(--glareX) var(--glareY),
+    var(--glare-color),
+    transparent 40%
+  );
+  opacity: 0;
+  transition: opacity 0.3s ease-out;
+  pointer-events: none;
+}
+.glass-card:hover::before {
+  opacity: 1;
+}
+.glass-card img {
+  transition: transform 0.4s ease;
+  border-radius: 1.5rem;
+  transform: translateZ(20px);
+}
+.glass-card:hover img {
+  transform: translateZ(50px) scale(1);
+}
+.card-content {
+  transform: translateZ(40px);
 }
 
-/* --- Buttons --- */
+/* --- Form & Search Input Fixes --- */
+.form-input {
+  background-color: var(--input-bg);
+  border: 1px solid var(--input-border);
+  color: var(--input-text);
+  transition: background-color 0.3s, border-color 0.3s;
+}
+.form-input::placeholder {
+  color: var(--placeholder-text);
+}
+.form-input:focus {
+  outline: 2px solid var(--text-accent);
+  outline-offset: 2px;
+}
+.glass-search input {
+  background-color: transparent;
+  border: none;
+  outline: none;
+  color: var(--text-primary);
+  width: 100%;
+}
+.glass-search input::placeholder {
+  color: var(--placeholder-text);
+}
+
+/* --- Text Color Fix --- */
+.card-content * {
+  color: var(--text-secondary) !important;
+}
+.card-content h3 {
+  color: var(--text-primary) !important;
+  font-weight: bold;
+}
+.card-content .text-accent {
+  color: var(--text-accent) !important;
+}
+
+/* --- Text, Links & Other Elements --- */
+.text-secondary {
+  color: var(--text-secondary);
+}
+.text-accent {
+  color: var(--text-accent);
+}
+a {
+  color: var(--text-accent);
+  transition: color 0.2s;
+}
+a:hover {
+  color: var(--link-hover-color);
+}
+#theme-toggle svg {
+  color: var(--theme-toggle-icon-color);
+}
+.btn {
+  transition: transform 0.2s ease;
+}
+.btn:hover {
+  transform: scale(1.05);
+}
 .btn-accent {
   background-color: var(--btn-accent-bg);
   color: var(--btn-accent-text);
 }
-.btn-subtle {
-  background-color: var(--glass-border);
-  color: var(--text-secondary);
+
+/* --- Animation --- */
+@keyframes fadeInUp {
+  from {
+    opacity: 0;
+    transform: translateY(20px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
 }
-.btn-subtle:hover {
-  background-color: var(--glass-bg);
+.animate-fadeInUp {
+  opacity: 0;
+  animation: fadeInUp 0.8s cubic-bezier(0.215, 0.61, 0.355, 1) forwards;
+}
+.delay-1 {
+  animation-delay: 0.1s;
+}
+.delay-2 {
+  animation-delay: 0.2s;
+}
+.delay-3 {
+  animation-delay: 0.3s;
 }
 
-/* --- Other Component Styles --- */
-#mainHeader {
-  position: sticky;
-  top: 0;
-  z-index: 50;
-  padding: 2rem 0;
-}
-#map {
-  height: 400px;
-  border-radius: 1.5rem;
-  z-index: 1;
-}
-.property-image-container {
-  border-radius: 1.5rem;
-  overflow: hidden;
-}
-.contact-card {
-  height: 400px;
-  display: flex;
-  flex-direction: column;
-  justify-content: space-between;
-}
-
-/* --- Hide Scrollbar on index.html --- */
-.no-scrollbar::-webkit-scrollbar {
+/* Scrollbar Hide */
+::-webkit-scrollbar {
   display: none;
-}
-.no-scrollbar {
-  -ms-overflow-style: none;
-  scrollbar-width: none;
 }
